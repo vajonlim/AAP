@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %} - FlaskApp</title>
+    <style>
+        .message {
+            padding: 10px;
+            margin: 5px;
+            background-color: #f3f3f3
+        }
+        nav a {
+            color: #d64161;
+            font-size: 3em;
+            margin-left: 50px;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+
+    </nav>
+    <hr>
+    <form method="post">
+        <div class="content">
+            <label for="Birthdate">Birth Date:</label>
+            <input type="date" id="Birthdate" name="Birthdate">
+        </div>
+        <div class="content">
+            <label for="Height">Height(CM):</label>
+            <input type="number" id="Height" name="Height" min="100" value="170">
+        </div>
+        <div class="content">
+            <label for="Weight">Weight(KG):</label>
+            <input type="number" id="Weight" name="Weight" value="60">
+        </div>
+        <div class="content">
+            <label for="SBP">Systolic Blood Pressure:</label>
+            <input type="number" id="SBP" name="SBP" value="60">
+        </div>
+        <div class="content">
+            <label for="DBP">Diastolic Blood Pressure:</label>
+            <input type="number" id="DBP" name="DBP" value="60">
+        </div>
+        <div class="content">
+            <p>Gender:</p>
+            <input type="radio" id="Male" name="Gender" value="2">
+            <label for="Male">Male</label><br>
+            <input type="radio" id="Female" name="Gender" value="1">
+            <label for="Female">Female</label><br>
+        </div>
+        <div class="content">
+            <p>Cholesterol:</p>
+            <input type="radio" id="CNormal" name="Cholesterol" value="1">
+            <label for="Normal">1: Normal</label><br>
+            <input type="radio" id="CANormal" name="Cholesterol" value="2">
+            <label for="ANormal">2: Above Normal</label><br>
+            <input type="radio" id="CWANormal" name="Cholesterol" value="3">
+            <label for="WANormal">3: Well Above Normal</label><br>
+        </div>
+        <div class="content">
+            <p>Glucose:</p>
+            <input type="radio" id="Normal" name="Glucose" value="1">
+            <label for="Normal">1: Normal</label><br>
+            <input type="radio" id="ANormal" name="Glucose" value="2">
+            <label for="ANormal">2: Above Normal</label><br>
+            <input type="radio" id="WANormal" name="Glucose" value="3">
+            <label for="WANormal">3: Well Above Normal</label><br>
+        </div>
+        <div class="content">
+            <p>Smoke:</p>
+            <input type="radio" id="SYes" name="Smoke" value="1">
+            <label for="Yes">Yes</label><br>
+            <input type="radio" id="SNo" name="Smoke" value="0">
+            <label for="No">No</label><br>
+        </div>
+        <div class="content">
+            <p>Alcohol:</p>
+            <input type="radio" id="Yes" name="Alcohol" value="1">
+            <label for="Yes">Yes</label><br>
+            <input type="radio" id="No" name="Alcohol" value="0">
+            <label for="No">No</label><br>
+        </div>
+        <div class="content">
+            <p>Active:</p>
+            <input type="radio" id="AYes" name="Active" value="1">
+            <label for="Yes">Yes</label><br>
+            <input type="radio" id="ANo" name="Active" value="0">
+            <label for="No">No</label><br>
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+
+
+</body>
+</html>

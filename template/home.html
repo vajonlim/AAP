@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body onload="setArr()">
+<h3 class="text-center"> Disease Predictor </h3>
+<div class="form-group">
+<select id='testlist' class="form-control" name="Select Symptoms" onchange="getSelectValue();">
+    <option disabled selected value="">Select Symptoms</option>
+       {% for option in symbols %}
+       <option value={{option}}>{{option}}</option>
+       {% endfor %}
+</select>
+</div>
+    <h3>Diseases chosen: </h3>
+    <ul id = "thelist">
+    </ul>
+    <script>
+        symptarr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+        function setArr()
+        {
+        symptarr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        }
+
+        function getSelectValue()
+        {
+        var selectedValue = document.getElementById('testlist').value;
+        document.getElementById("thelist").innerHTML += ('<li>'+selectedValue+'</li>')
+        var x = document.getElementById('testlist').selectedIndex;
+        var y = document.getElementById('testlist').options;
+        symptarr[(y[x].index)-1] = 1;
+        return symptarr;
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+                $("#demo_btn").on("click", function() {
+                    var js_data = JSON.stringify(symptarr);
+                    console.log(js_data)
+                    $.ajax({
+                        url: '/predict',
+                        type : 'post',
+                        contentType: 'application/json',
+                        dataType : 'json',
+                        data : js_data
+                    }).done(function(result) {
+                        console.log(result);
+                        $("#data").html(result);
+                        window.location.href = result.redirect
+                    }).fail(function(jqXHR, textStatus, errorThrown) {
+                        console.log("fail: ",textStatus, errorThrown);
+                    });
+                });
+            });
+    </script>
+</body>
+<body>
+<button id="demo_btn">Predict</button>
+
+</body>
+
+</html>
